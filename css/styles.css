@@ -1,9 +1,12 @@
-@font-face {
+/*@font-face {
   font-family: 'icomoon';
   src: url("fonts/icomoon.eot");
   src: url("fonts/icomoon.eot?#iefix") format("embedded-opentype"), url("fonts/icomoon.svg#icomoon") format("svg"), url("fonts/icomoon.woff") format("woff"), url("fonts/icomoon.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}*/
+@font-face{
+	font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; 
 }
 
 
@@ -34,7 +37,8 @@ summary {
 /* =1.2 - Base
 --------------------------------------------------------*/
 html {
-  font-family: sans-serif;
+  /*font-family: sans-serif;*/
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; 
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
@@ -44,7 +48,8 @@ html {
 
 body {
   color: #666666;
-  font-family: Helvetica, sans-serif;
+  /*font-family: Helvetica, sans-serif;*/
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; 
   font-size: 14px;
   line-height: 24px;
   margin: 0;
@@ -156,6 +161,10 @@ ol {
   padding: 0;
 }
 
+select option{
+	font-size: 100px;
+}
+
 /* =2 - MODULES
 ----------------------------------------------------------------------------*/
 /* =2.1 - HELPERS
@@ -163,7 +172,8 @@ ol {
 /* ICONS */
 
 [data-icon]:before {
-  font-family: 'icomoon';
+  /*font-family: 'icomoon';*/
+  font-family: "HelveticaNeueLight", "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; 
   content: attr(data-icon);
   speak: none;
   font-weight: normal;
