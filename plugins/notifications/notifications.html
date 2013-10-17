@@ -1,0 +1,11 @@
+<ul class="nav nav-v">
+    <% _.each(notifications, function(notification) {%>
+    <li class="nav-item">
+        <%= notification.subject %> : notification.fullmessage <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <i>
+        	<%= notification.date %>
+		</i>
+    </li>
+    <% }); %>
+</ul>
