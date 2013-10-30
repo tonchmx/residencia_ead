@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="css/chui.android-3.0.4.min.css">
+    <!--<link rel="stylesheet" href="css/chui.ios-3.0.4.min.css">
+    <link rel="stylesheet" href="css/chui.win-3.0.4.min.css">-->
     <script type="text/javascript">
         //Soporte para el Webkit
         window.requireNode = window.require;
@@ -17,7 +20,8 @@
     <script src="PushNotification.js"></script>
     <script src="externallib/jquery-1.8.1.min.js"></script>
     <script src="externallib/jquery.touchSwipe.min.js"></script>
-    <script src="externallib/jquery.mobile-1.3.2.min.js"></script>
+    <script src="externallib/chocolatechip-3.0.4.min.js"></script>
+    <script src="externallib/chui-3.0.4.min.js"></script>
     <script src="externallib/md5.js"></script>
     <script src="externallib/matchMedia.js"></script>
     <script src="externallib/matchMedia.addListener.js"></script>
@@ -25,35 +29,83 @@
     <script src="externallib/backbone.js"></script>
     <script src="externallib/backbone-localstorage.js"></script>
     <script src="lib/mm.js"></script>
+    <script src="lib/mm.tpl.js"></script>
+    <script src="lib/mm.db.js"></script>
+    <script src="lib/mm.lang.js"></script>
     <script data-main="lib/app.js" src="externallib/require.js"></script>
 
 </head>
 <body>
 
-    <div data-role="page" id="add-site">
-        <div data-role="header">
-            <h1>Acceso</h1>
-        </div>
-        <div data-role="content">
-            <form action="">
-                <p>
-                    <select id="moodle">
-                        <option value="http://localhost:8888/moodle25">Localhost</option>
-                    </select>
-                </p>
-                <p>
-                    <input type="text" id="username" placeholder="Usuario">
-                </p>
-                <p>
-                    <input type="password" id="password" placeholder="password">
-                </p>
-                <p>
-                    <input type="submit" name="add" id="addsitebutton" value="Entrar">
-                </p>
-            </form>
-        </div>
+    <div id="login">
+
     </div>
 
+    <div id="principal" style="display: none">
 
+    </div>
+
+    <!--Pantalla de login Inicio -->
+    <script type="text/x-template" id="login_template">
+        <nav>
+            <h2>Acceso!</h2>
+        </nav>
+        <article class="current">
+            <section>
+                <h2>Introduce tus datos</h2>
+                <form action="">
+                    <ul class="list">
+                        <li class="comp">
+                            <div>
+                                <label for="moodle">Moodle:</label>
+                            </div>
+                            <aside>
+                                <select id="moodle">
+                                    <option value="http://localhost:8888/moodle25">Localhost</option>
+                                </select>
+                            </aside>
+                        </li>
+                        <li class="comp">
+                            <div>
+                                <label for="username"><%= MM.lang.s("username") %>:</label>
+                            </div>
+                            <aside>
+                                <input type="text" id="username" autocapitalize="off" autocorrect="off" required>
+                            </aside>
+                        </li>
+                        <li class="comp">
+                            <div>
+                                <label for="password"><%= MM.lang.s("password") %>:</label>
+                            </div>
+                            <aside>
+                                <input type="password" id="password" autocapitalize="off" autocorrect="off" required>
+                            </aside>
+                        </li>
+                    </ul>
+                    <br />
+                    <div class="horizontal centered">
+                        <a class="button" id="boton_login"><%= MM.lang.s("entrar") %></a>
+                    </div>
+                </form>
+            </section>
+        </article>
+
+    </script>
+    <!--Pantalla de login fin -->
+
+    <!-- Pantalla principal inicio -->
+    <script type="text/x-template" id="principal_template">
+        <nav>
+            <h2>Bienvenido:</h2>
+        </nav>
+        <article class="current">
+            Usuario: <%= usuario.nombre %> <p/>
+            Sitio: <%= siteurl %>
+            <div class="horizontal centered">
+                <a href="#salir" class="button">Salir</a>
+            </div>
+        </article>
+    </script>
+    <!-- Pantalla principal fin -->
 </body>
 </html>
