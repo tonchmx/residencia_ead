@@ -6,9 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="msapplication-tap-highlight" content="no">
-    <link rel="stylesheet" href="css/chui.android-3.0.4.min.css">
-    <!--<link rel="stylesheet" href="css/chui.ios-3.0.4.min.css">
-    <link rel="stylesheet" href="css/chui.win-3.0.4.min.css">-->
+    <link rel="stylesheet" href="css/jquery.mobile.flatui.min.css">
     <script type="text/javascript">
         //Soporte para el Webkit
         window.requireNode = window.require;
@@ -19,9 +17,7 @@
     <script src="webintent.js"></script>
     <script src="PushNotification.js"></script>
     <script src="externallib/jquery-1.8.1.min.js"></script>
-    <script src="externallib/jquery.touchSwipe.min.js"></script>
-    <script src="externallib/chocolatechip-3.0.4.min.js"></script>
-    <script src="externallib/chui-3.0.4.min.js"></script>
+    <script src="externallib/jquery.mobile-1.3.2.min.js"></script>
     <script src="externallib/md5.js"></script>
     <script src="externallib/matchMedia.js"></script>
     <script src="externallib/matchMedia.addListener.js"></script>
@@ -37,74 +33,52 @@
 </head>
 <body>
 
-    <div id="login">
+    <div data-role="page" id="login">
 
     </div>
 
-    <div id="principal" style="display: none">
+    <div data-role="page" id="principal" style="display: none">
 
     </div>
 
     <!--Pantalla de login Inicio -->
-    <script type="text/x-template" id="login_template">
-        <nav>
-            <h2>Acceso!</h2>
-        </nav>
-        <article class="current">
-            <section>
-                <h2>Introduce tus datos</h2>
-                <form action="">
-                    <ul class="list">
-                        <li class="comp">
-                            <div>
-                                <label for="moodle">Moodle:</label>
-                            </div>
-                            <aside>
-                                <select id="moodle">
-                                    <option value="http://localhost:8888/moodle25">Localhost</option>
-                                </select>
-                            </aside>
-                        </li>
-                        <li class="comp">
-                            <div>
-                                <label for="username"><%= MM.lang.s("username") %>:</label>
-                            </div>
-                            <aside>
-                                <input type="text" id="username" autocapitalize="off" autocorrect="off" required>
-                            </aside>
-                        </li>
-                        <li class="comp">
-                            <div>
-                                <label for="password"><%= MM.lang.s("password") %>:</label>
-                            </div>
-                            <aside>
-                                <input type="password" id="password" autocapitalize="off" autocorrect="off" required>
-                            </aside>
-                        </li>
-                    </ul>
-                    <br />
-                    <div class="horizontal centered">
-                        <a class="button" id="boton_login"><%= MM.lang.s("entrar") %></a>
-                    </div>
-                </form>
-            </section>
-        </article>
-
+    <script type="text/template" id="login_template">
+        <div data-role="header" class="ui-bar-e" data-position="fixed">
+            <h1>Acceso!</h1>
+        </div>
+        <p />
+        <div data-role="content" class="ui-content">
+            <h2>Introduce tus datos</h2>
+            <form action="">
+                <label for="moodle">Moodle:</label>
+                <select id="moodle">
+                    <option value="http://localhost:8888/moodle25">Localhost</option>
+                </select>
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" autocapitalize="off" autocorrect="off" required>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" autocapitalize="off" autocorrect="off" required>
+                <a data-role="button" id="boton_login">Entrar</a>
+            </form>
+        </div>
     </script>
     <!--Pantalla de login fin -->
 
     <!-- Pantalla principal inicio -->
-    <script type="text/x-template" id="principal_template">
-        <nav>
-            <h2>Bienvenido:</h2>
-        </nav>
-        <article class="current">
-            Usuario: <%= usuario.nombre %> <p/>
-            Sitio: <%= siteurl %>
-            <div class="horizontal centered">
-                <a href="#salir" class="button">Salir</a>
+    <script type="text/template" id="principal_template">
+        <div data-role="header" class="ui-bar-e">
+            <h1>Bienvenido!</h1>
+        </div>
+        <div data-role="content" class="ui-content">
+            <div data-role="collapsible-set" data-theme="b" data-content-theme="b">
+                <% _.each(courses, function(course) { %>
+                <div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">
+                    <h3><%= course.fullname %></h3>
+                    <p>Soy hijo del curso: <%= course.fullname %></p>
+                </div>
+                <% }); %>
             </div>
-        </article>
+        </div>
     </script>
     <!-- Pantalla principal fin -->
 </body>
