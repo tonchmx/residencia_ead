@@ -1811,7 +1811,7 @@ label.ui-submit { font-size: 16px; line-height: 1.4; font-weight: normal; margin
 	-webkit-border-bottom-left-radius: 0;
 	border-bottom-left-radius: 0;
 }
-.ui-collapsible-set { margin: .5em 0; }
+/*.ui-collapsible-set { margin: .5em 0; }*/
 .ui-collapsible-set .ui-collapsible { margin: -1px 0 0; }
 .ui-collapsible-set .ui-collapsible.ui-first-child { margin-top: 0; }
 .ui-controlgroup, fieldset.ui-controlgroup { padding: 0; margin: .5em 0; zoom: 1; }
