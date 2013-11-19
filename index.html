@@ -17,6 +17,16 @@
     <script src="webintent.js"></script>
     <script src="PushNotification.js"></script>
     <script src="externallib/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript">
+        // DISABLE JQM ROUTER
+        $(document).bind("mobileinit", function () {
+            $.mobile.ajaxEnabled = false;
+            $.mobile.linkBindingEnabled = false;
+            $.mobile.hashListeningEnabled = false;
+            $.mobile.pushStateEnabled = false;
+            $.mobile.changePage.defaults.changeHash = false;
+        });
+    </script>
     <script src="externallib/jquery.mobile-1.3.2.js"></script>
     <script src="externallib/md5.js"></script>
     <script src="externallib/matchMedia.js"></script>
@@ -39,6 +49,15 @@
 
     <div data-role="page" id="principal" style="display: none">
 
+        <div id="cabezera"></div>
+
+        <div id="panel-izq"></div>
+
+        <div id="panel-centro"></div>
+
+        <div id="panel-der"></div>
+
+
     </div>
 
     <!--Pantalla de login Inicio -->
@@ -53,12 +72,15 @@
                 <label for="moodle">Moodle:</label>
                 <select id="moodle">
                     <option value="http://localhost/moodle25">Localhost</option>
+                    <option value="http://10.7.3.194/moodle25">Escuela</option>
+                    <option value="URL">NOMBRE</option>
                 </select>
                 <label for="username">Usuario:</label>
                 <input type="text" id="username" autocapitalize="off" autocorrect="off" required>
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" autocapitalize="off" autocorrect="off" required>
-                <a data-role="button" id="boton_login">Entrar</a>
+                <!--<a data-role="button" id="boton_login">Entrar</a>-->
+                <input type="submit" value="Entrar">
             </form>
         </div>
     </script>
@@ -77,9 +99,9 @@
                     <div data-role="collapsible" data-collapsed-icon="flat-calendar" data-expanded-icon="flat-cross">
                         <h3><%= course.fullname %></h3>
                         <ul data-role="listview">
-                            <li>Soy hijo del curso: <%= course.fullname %></li>
-                            <li>Mi nombre corto es: <%= course.shortname %></li>
-                            <li>Tengo: <%= course.enrolledusercount %> usuarios inscritos</li>
+                            <% _.each(coursePlugins, function(plugin) { %>
+                                <li><a href="<%= plugin.menuURL%><%= course.id %>"><%= plugin.name %></a></li>
+                            <%  }); %>
                         </ul>
                     </div>
                     <% }); %>
