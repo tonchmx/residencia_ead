@@ -43,11 +43,11 @@
 </head>
 <body>
 
-    <div data-role="page" id="login">
+    <div data-role="page" id="login" class="ui-page ui-body-c">
 
     </div>
 
-    <div data-role="page" id="principal" style="display: none">
+    <div data-role="page" id="principal" class="ui-page ui-body-c" style="display: none">
 
         <div id="cabezera"></div>
 
@@ -62,8 +62,8 @@
 
     <!--Pantalla de login Inicio -->
     <script type="text/template" id="login_template">
-        <div data-role="header" class="ui-bar-e" data-position="fixed">
-            <h1>Acceso!</h1>
+        <div data-role="header" class="ui-header-fixed ui-bar-e" data-position="fixed">
+            <h1 class="ui-title" role="heading">Acceso!</h1>
         </div>
         <p />
         <div data-role="content" class="ui-content">
@@ -80,7 +80,7 @@
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" autocapitalize="off" autocorrect="off" required>
                 <!--<a data-role="button" id="boton_login">Entrar</a>-->
-                <input type="submit" value="Entrar">
+                <input type="submit" value="Entrar" data-transtion="fade">
             </form>
         </div>
     </script>
@@ -88,7 +88,7 @@
 
     <!-- Pantalla principal inicio -->
     <script type="text/template" id="principal_template">
-        <div data-role="header" class="ui-bar-e">
+        <div data-role="header" class="ui-header ui-bar-e">
             <h1>Bienvenido! <%= usuario.nombre %> </h1> <img src="<%= usuario.avatar %>">
         </div>
         <div data-role="content" class="ui-content">
@@ -112,7 +112,7 @@
                 <li data-role="list-divider">Ajustes</li>
                 <li><a href="#">Ajustes de la cuenta</a></li>
                 <li><a href="#">Ajustes de la aplicación</a></li>
-                <li data-role="list-divider"><a href="#salir" data-role="button">Salir</a></li>
+                <li data-role="list-divider"><a href="#salir" data-role="button" data-transtion="fade">Salir</a></li>
             </ul>
         </div>
     </script>

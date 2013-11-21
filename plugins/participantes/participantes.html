@@ -1,0 +1,15 @@
+<div data-role="header" class="ui-header ui-bar-e" role="banner">
+    <a href="#" onclick="MM.centroIzquierda();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a><h1 class="ui-title" role="heading" aria-level="1"><%= titulo %></h1>
+</div>
+
+<div data-role="content" class="ui-content">
+    <ul data-role="listview">
+        <% _.each(usuarios, function(usuario) { %>
+        <li>
+            <img src="<%= usuario.profileimageurl%>"/>
+            <%= usuario.fullname %>
+        </li>
+        <% }); %>
+    </ul>
+
+</div>
