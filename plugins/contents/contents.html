@@ -1,34 +1,17 @@
+<div data-role="header" class="ui-header ui-bar-e" role="banner">
+    <a href="#" onclick="MM.derechaCentro();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a>
+    <h1 class="ui-title" role="heading" aria-level="1"><%= course.shortname %> - Contenido</div></h1>
+</div>
 
-<div class="content-index">
-    <header>
-        <div>
-            <div class="bd">
-                <h1><%= course.fullname %></h1>
-                <p><%= course.summary %></p>
-            </div>
-        </div>
-    </header>
+<div data-role="content" class="ui-content">
+    <ul data-role="listview">
     <% _.each(sections, function(section) { %>
     <% if (section.modules && section.modules.length >0) { %>
-    <section>
-        <h2><%= section.name %></h2>
-        <ul class="nav nav-v">
+        <li data-role="list-divider"><%= section.name %><li>
+
             <% _.each(section.modules, function(module) { %>
-            <li class="nav-item media mod-<%= module.modname %>">
-                <div class="content-table">
-                    <% if (module.modname != "label"){ %>
-                        <div class="content-actions">
-                            <% if (!module.downloaded) { %>
-                                <% if (module.modname == "folder"){ %>
-                                    <a href="#course/contents/<%= courseId %>/section/<%= sectionId %>/folder/<%= module.contentid %>"><img src="img/arrowright.png" border="0" id="download-<%= module.contentid %>"></a>&nbsp;
-                                <% } else if (!module.webOnly) { %>
-                                    <a href="#course/contents/<%= courseId %>/section/<%= sectionId %>/download/<%= module.contentid %>"><img src="img/download.png" border="0" id="download-<%= module.contentid %>"></a>&nbsp;
-                                <% } %>
-                            <% } %>
-                                <a href="javascript: MM.plugins.contents.infoContent('<%= courseId %>','<%= sectionId %>','<%= module.contentid %>');"><img src="img/info.png" border="0" id="info-<%= module.contentid %>"></a>
-                        </div>
-                    <% } %>
-                    <div class="content-name mod-<%= module.modname %>">
+            <li>
+
                         <% if (module.downloaded) { %>
                             <% if (module.modname == "folder"){ %>
                                 <a href="#course/contents/<%= courseId %>/section/<%= sectionId %>/folder/<%= module.contentid %>" id="link-<%= module.contentid %>">
@@ -45,27 +28,17 @@
                             <% } %>
                         <% } %>
                         <% if (module.modname != "label"){ %>
-                            <div class="img">
-                            <% if (typeof(module.mainExtension) != "undefined") { %>
-                                <img src="img/files/<%= module.mainExtension %>-64.png" alt="img">
-                            <% } else { %>
-                                <img src="<%= MM.plugins.contents.getModuleIcon(module.modname) %>" alt="img">
-                            <% } %>
-                            </div>
-                            <div class="bd">
                                 <h3><%= module.name %></h3>
-                            </div>
                         <% } else { %>
                             <a class="expand-label" href="#course/contents/<%= courseId %>/section/<%= sectionId %>/label/<%= module.contentid %>" id="link-<%= module.contentid %>">
                             <h3><%= module.name %></h3>
                         <% } %>
                         </a>
-                    </div>
-                </div>
+
             </li>
             <% }); %>
-        </ul>
-    </section>
+
     <% } %>
     <% }); %>
+    </ul>
 </div>

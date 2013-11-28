@@ -1,12 +1,19 @@
-<ul class="nav nav-v">
-    <li class="nav-item">
-            <a href="#course/contents/<%= course.courseid %>/section/-1" class="menu1 touch-row"><%= MM.lang.s("showall") %><br></a>
-    </li>
-<% $.each(sections, function(index, section) { %>
-    <% if (section.modules && section.modules.length >0) { %>
-    <li class="nav-item">
-            <a href="#course/contents/<%= course.courseid %>/section/<%= index %>" class="menu1 touch-row"><%= section.name%><br></a>
-    </li>
-    <% } %>
-<% }); %>
-</ul>
+<div data-role="header" class="ui-header ui-bar-e" role="banner">
+    <a href="#" onclick="MM.centroIzquierda();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a>
+    <h1 class="ui-title" role="heading" aria-level="1"><%= course.shortname %> - Contenido</div></h1>
+</div>
+
+<div data-role="content" class="ui-content">
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar..." data-inset="true" data-corners="false">
+        <li>
+                <a href="#course/contents/<%= course.courseid %>/section/-1"><%= MM.lang.s("showall") %><br></a>
+        </li>
+    <% $.each(sections, function(index, section) { %>
+        <% if (section.modules && section.modules.length >0) { %>
+        <li>
+                <a href="#course/contents/<%= course.courseid %>/section/<%= index %>"><%= section.name%><br></a>
+        </li>
+        <% } %>
+    <% }); %>
+    </ul>
+</div>

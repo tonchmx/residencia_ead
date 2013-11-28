@@ -1,13 +1,16 @@
 <div data-role="header" class="ui-header ui-bar-e" role="banner">
-    <a href="#" onclick="MM.centroIzquierda();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a><h1 class="ui-title" role="heading" aria-level="1"><%= titulo %></h1>
+    <a href="#" onclick="MM.centroIzquierda();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a>
+    <h1 class="ui-title" role="heading" aria-level="1"><%= titulo %></h1>
 </div>
 
 <div data-role="content" class="ui-content">
-    <ul data-role="listview">
+    <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar..." data-inset="true" data-corners="false">
         <% _.each(usuarios, function(usuario) { %>
         <li>
-            <img src="<%= usuario.profileimageurl%>"/>
-            <%= usuario.fullname %>
+            <a href="#participante/<%= courseId %>/<%= usuario.id %>">
+                <img src="<%= usuario.profileimageurl%>" style=""/>
+                <h3><%= usuario.fullname %></h3>
+            </a>
         </li>
         <% }); %>
     </ul>

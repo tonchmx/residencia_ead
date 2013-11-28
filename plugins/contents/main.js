@@ -9,6 +9,7 @@ define(templates,function (sectionsTpl, contentsTpl, folderTpl, mimeTypes) {
     var plugin = {
         settings: {
             name: "contents",
+            nameToShow: "Contenidos",
             type: "course",
             menuURL: "#course/contents/",
             lang: {
@@ -36,13 +37,19 @@ define(templates,function (sectionsTpl, contentsTpl, folderTpl, mimeTypes) {
 
         viewCourseContents: function(courseId) {
 
-            MM.panels.showLoading('center');
+            $.mobile.loading( 'show', {
+                text: 'Cargando',
+                textVisible: true,
+                theme: 'b'
+            });
+
+           /* MM.panels.showLoading('center');
 
             if (MM.deviceType == "tablet") {
                 MM.panels.showLoading('right');
             }
             // Adding loading icon.
-            $('a[href="#course/contents/' +courseId+ '"]').addClass('loading-row');
+            $('a[href="#course/contents/' +courseId+ '"]').addClass('loading-row');*/
 
             var data = {
             "options[0][name]" : "",
@@ -51,8 +58,9 @@ define(templates,function (sectionsTpl, contentsTpl, folderTpl, mimeTypes) {
             data.courseid = courseId;
 
             MM.moodleWSCall('core_course_get_contents', data, function(contents) {
+                $.mobile.hidePageLoadingMsg();
                 // Removing loading icon.
-                $('a[href="#course/contents/' +courseId+ '"]').removeClass('loading-row');
+                //$('a[href="#course/contents/' +courseId+ '"]').removeClass('loading-row');
                 var course = MM.db.get("courses", MM.config.current_site.id + "-" + courseId);
 
                 var tpl = {
@@ -63,16 +71,16 @@ define(templates,function (sectionsTpl, contentsTpl, folderTpl, mimeTypes) {
 
 				pageTitle = course.get("shortname") + " - " + MM.lang.s("contents");
 
-				MM.panels.show("center", html, {title: pageTitle});
-                if (MM.deviceType == "tablet" && contents.length > 0) {
-					$("#panel-center li:eq(1)").addClass("selected-row");
-					// First section.
-                    MM.plugins.contents.viewCourseContentsSection(courseId, 0);
-                }
+				 //ocultamos el menu
+                $('#panel-izq').css('display', 'none');
+                $('#panel-centro').css('display', 'block');
+                $('#panel-centro').html(html).trigger("create");
+
+
             }, null, function(m) {
                 // Error callback.
                 // Removing loading icon.
-                $('a[href="#course/contents/' +courseId+ '"]').removeClass('loading-row');
+                $.mobile.hidePageLoadingMsg();
             });
         },
 
@@ -215,7 +223,11 @@ define(templates,function (sectionsTpl, contentsTpl, folderTpl, mimeTypes) {
 				var pageTitle = course.get("shortname") + " - " + MM.lang.s("contents");
 
                 var html = MM.tpl.render(MM.plugins.contents.templates.contents.html, tpl);
-                MM.panels.show('right', html, {title: pageTitle});
+                
+                //ocultamos el menu
+                $('#panel-centro').css('display', 'none');
+                $('#panel-der').css('display', 'block');
+                $('#panel-der').html(html).trigger("create");
             });
         },
 

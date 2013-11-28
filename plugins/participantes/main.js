@@ -1,11 +1,13 @@
 var templates = [
-    "root/externallib/text!root/plugins/participantes/participantes.html"
+    "root/externallib/text!root/plugins/participantes/participantes.html",
+    "root/externallib/text!root/plugins/participantes/participante.html"
 ];
 
-define(templates, function(participantesTpl){
+define(templates, function(participantesTpl, participanteTpl){
     var plugin = {
         settings: {
             name: "participantes",
+            nameToShow: "Participantes",
             type: "course",
             menuURL: "#participantes/",
             lang: {
@@ -45,8 +47,7 @@ define(templates, function(participantesTpl){
                 var output = MM.tpl.render(MM.plugins.participantes.templates.participantes.html, variables);
 
                 //ocultamos el menu
-                $('#panel-izq').css('display', 'none');
-                $('#panel-centro').css('display', 'block');
+                MM.izquierdaCentro();
                 $('#panel-centro').html(output).trigger("create");
             }, null, function(m){
                 MM.log("Error participantes");
@@ -54,11 +55,46 @@ define(templates, function(participantesTpl){
             });
         },
 
-        mostrarParticipante: function(){
+        mostrarParticipante: function(courseId, userId){
+
+            var data = {
+                "userlist[0][userid]": userId,
+                "userlist[0][courseid]": courseId
+            }
+
             MM.log("Mostrando participante");
+
+            MM.moodleWSCall('moodle_user_get_course_participants_by_id', data, function(users){
+                //cargar los plugins de tipo usuario
+                var userPlugins = [];
+                for (var el in MM.plugins){
+                    var plugin = MM.plugins[el];
+                    if (plugin.settings.type == "user"){
+                        userPlugins.push(plugin.settings);
+                    }
+                }
+
+                var newUser = users.shift();
+
+
+
+                //Cargamos el template
+                var variables = {usuario: newUser}
+                var output = MM.tpl.render(MM.plugins.participantes.templates.participante.html, variables);
+
+                //ocultamos la lista de participantes
+                MM.centroDerecha();
+                $('#panel-der').html(output).trigger("create");
+            });
+
+
         },
 
         templates: {
+            "participante":{
+                model: "participante",
+                html: participanteTpl
+            },
             "participantes":{
                 html: participantesTpl
             }

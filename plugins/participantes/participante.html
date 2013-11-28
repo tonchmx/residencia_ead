@@ -1,0 +1,24 @@
+<div data-role="header" class="ui-header ui-bar-e" role="banner">
+    <a href="#" onclick="MM.derechaCentro();" data-icon="arrow-l" data-corners="false" style="float: left">Regresar</a>
+    <h1 class="ui-title" role="heading" aria-level="1"><%= usuario.fullname %></h1>
+</div>
+<div data-role="content">
+    <ul data-role="listview">
+        <li>
+            <img src="<%= usuario.profileimageurl%>" style="-webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em;"/>
+            <h3><%= usuario.fullname %></h3>
+        </li>
+        <li data-role="list-divider">Información Personal</li>
+        <% if (usuario.email != null) { %>
+            <li>Email: <%= usuario.email %></li>
+        <% }; %>
+        <% if (usuario.interests != null) { %>
+            <li>Intereses: <%= usuario.interests %></li>
+        <% }; %>
+        <% if (usuario.description.length > 0) { %>
+            <li>Descripción: <%= usuario.description %></li>
+        <% }; %>
+        <li>Ciudad: <%= usuario.city %></li>
+        <li>País: <%= usuario.country %></li>
+    </ul>
+</div>

@@ -29,8 +29,6 @@
     </script>
     <script src="externallib/jquery.mobile-1.3.2.js"></script>
     <script src="externallib/md5.js"></script>
-    <script src="externallib/matchMedia.js"></script>
-    <script src="externallib/matchMedia.addListener.js"></script>
     <script src="externallib/underscore.js"></script>
     <script src="externallib/backbone.js"></script>
     <script src="externallib/backbone-localstorage.js"></script>
@@ -89,7 +87,12 @@
     <!-- Pantalla principal inicio -->
     <script type="text/template" id="principal_template">
         <div data-role="header" class="ui-header ui-bar-e">
-            <h1>Bienvenido! <%= usuario.nombre %> </h1> <img src="<%= usuario.avatar %>">
+            <ul data-role="listview">
+                <li>
+                    <img src="<%= usuario.avatar %>" style="-webkit-border-radius: 50em; -moz-border-radius: 50em; border-radius: 50em;"/>
+                    <h1 style="font-size:x-large ">Bienvenido! <%= usuario.nombre %><h1>
+                </li>
+            </ul>
         </div>
         <div data-role="content" class="ui-content">
             <ul data-role="listview">
@@ -100,7 +103,7 @@
                         <h3><%= course.fullname %></h3>
                         <ul data-role="listview">
                             <% _.each(coursePlugins, function(plugin) { %>
-                                <li><a href="<%= plugin.menuURL%><%= course.id %>"><%= plugin.name %></a></li>
+                                <li><a href="<%= plugin.menuURL%><%= course.id %>"><%= plugin.nameToShow %></a></li>
                             <%  }); %>
                         </ul>
                     </div>

@@ -7,6 +7,7 @@ define(templates, function (contenidosTpl) {
     var plugin = {
         settings: {
             name: "contenidos",
+            nameToShow: "Contenidos",
             type: "course",
             menuURL: "#curso/contenidos/",
             lang: {
