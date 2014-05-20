@@ -1,7 +1,4 @@
 residencia_ead
-==============
-
-Fork de https://github.com/moodlehq/moodlemobile
 
 ==============
 
